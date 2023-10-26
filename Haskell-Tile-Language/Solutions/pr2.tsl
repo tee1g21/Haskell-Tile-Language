@@ -1,0 +1,67 @@
+-- task 2 (grid size 10*(size tile1))
+
+-- Gets and stores the input tiles.
+input tile1;
+
+-- Rotates tile1 in required ways to produce the needed tiles.
+tile90 = rotate(90, tile1);
+tile180 = rotate(180, tile1);
+tile270 = rotate(270, tile1);
+
+
+-- Creates the basesquare to be placed around the grid.
+baseSquare = build { 
+    place tile1;
+    place tile90;
+    newLine;
+    place tile270;
+    place tile180;
+};
+
+-- Scales the built tile by 3 for placing in the middle then splits it for proper placement in the grid.
+bigSquare = scale(3, baseSquare);
+
+subtile1 = subtile(bigSquare, 0, 0, (size (baseSquare)));
+subtile2 = subtile(bigSquare, (size (baseSquare)), 0, (size (baseSquare)));
+subtile3 = subtile(bigSquare, 2 * (size (baseSquare)), 0, (size (baseSquare)));
+
+subtile4 = subtile(bigSquare, 0, (size (baseSquare)), (size (baseSquare)));
+subtile5 = subtile(bigSquare, (size (baseSquare)), (size (baseSquare)), (size (baseSquare)));
+subtile6 = subtile(bigSquare, 2 * (size (baseSquare)), (size (baseSquare)), (size (baseSquare)));
+
+subtile7 = subtile(bigSquare, 0, 2 * (size (baseSquare)), (size (baseSquare)));
+subtile8 = subtile(bigSquare, (size (baseSquare)), 2 * (size (baseSquare)), (size (baseSquare)));
+subtile9 = subtile(bigSquare, 2 * (size (baseSquare)), 2 * (size (baseSquare)), (size (baseSquare)));
+
+
+
+-- Places the first line using repeat (as all baseSquare).
+repeat(5) { place baseSquare; };
+newLine;
+
+-- First line containing the scaled square.
+place baseSquare;
+place subtile1;
+place subtile2;
+place subtile3;
+place baseSquare;
+newLine;
+
+-- Second line containing the scaled square.
+place baseSquare;
+place subtile4;
+place subtile5;
+place subtile6;
+place baseSquare;
+newLine;
+
+-- Final line containing the scaled square.
+place baseSquare;
+place subtile7;
+place subtile8;
+place subtile9;
+place baseSquare;
+newLine;
+
+-- Places the final line using repeat (as all baseSquare).
+repeat(5) { place baseSquare; };

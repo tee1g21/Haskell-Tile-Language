@@ -1,0 +1,100 @@
+-- problem 6 (output size 60) input tiles 1 2 and 3
+
+-- build line 1 with 2 blanks at the start
+lineStart1 = build {
+    place (fill (white, (size (tile1)) ));
+    place (fill (white, (size (tile1)) ));
+    repeat (19) {
+        place tile1;
+        place tile2;
+        place tile3;
+    };
+    place tile1;
+};
+-- build line 2 with 1 blank at the start
+lineStart2 = build {
+    place (fill (white, (size (tile1)) ));
+    repeat (19) {
+        place tile2;
+        place tile3;
+        place tile1;
+    };
+    place tile2;
+    place tile3;
+};
+-- build line starting with tile1
+lineStartT1 = build {
+    repeat (20) {
+        place tile1;
+        place tile2;
+        place tile3;
+    };
+};
+-- build line starting with tile2
+lineStartT2 = build {
+    repeat (20) {
+        place tile2;
+        place tile3;
+        place tile1;
+    };
+};
+-- build line starting with tile3
+lineStartT3 = build {
+    repeat (20) {
+        place tile3;
+        place tile1;
+        place tile2;
+    };
+};
+-- build line starting tile1 with 1 blank at the end
+lineEnd1 = build {
+    repeat (19) {
+        place tile1;
+        place tile2;
+        place tile3;
+    };
+    place tile1;
+    place tile2;
+    place (fill (white, (size (tile1)) ));
+};
+-- build line starting tile3 with 2 blanks at the end
+lineEnd2 = build {
+    repeat (19) {
+        place tile3;
+        place tile1;
+        place tile2;
+    };
+    place tile3;
+    place (fill (white, (size (tile1)) ));
+    place (fill (white, (size (tile1)) ));
+};
+
+
+-- place the first 2 lines
+place line1;
+newLine;
+place line2;
+newLine;
+
+--place 56 lines of repeating pattern
+repeat(18){ -- has to be repeat 18, highest multiple of 56 available
+    --line starting tile3 and newline
+    place lineStartT3;
+    place newLine;
+    --line starting tile2 and newline
+    place lineStartT2;
+    place newLine;
+    --line starting tile1 and newline
+    place lineStartT1;
+    place newLine;
+};
+-- line starting tile2 and newline
+place lineStartT2;
+place newLine;
+-- line starting tile1 and newline
+place lineStartT1;
+place newLine;
+
+--place the last 2 lines
+place lineEnd1;
+place lineEnd2;

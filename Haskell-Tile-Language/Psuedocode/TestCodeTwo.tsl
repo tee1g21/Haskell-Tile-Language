@@ -1,0 +1,14 @@
+input tile1;
+
+tile2 = reflectX(tile1);
+tile3 = reflectY(tile1);
+tile4 = reflectY(tile2);
+
+repeat (5 + (10*2))
+{
+    place tile1;
+    place tile2;
+    place tile3;
+    place tile4;
+    newline;
+};

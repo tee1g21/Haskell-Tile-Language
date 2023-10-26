@@ -1,0 +1,47 @@
+input tile1;
+
+rowPadding = build {
+    repeat ((size(tile1) * 100)) {
+        place fill(white, 1);
+    };
+};
+
+columnPadding = build {
+    repeat ((size(tile1) * 100)) {
+        place fill(white, 1);
+        newLine;
+    };    
+};
+
+
+i = 48;
+N = (100 - (2 * i));
+
+tileN = scale(N, tile1);
+currentColumnPadding = subtile(columnPadding, 0, 0, size(tileN));
+
+tileNext = build {
+    
+    -- Adds upper padding to the tile.
+    repeat (2 * i * size(tile1)) {
+        place rowPadding;
+        newLine;
+    };
+
+    repeat (2* i * size(tile1)) {
+        place currentColumnPadding;
+    };
+    place tileN;
+
+    -- repeat (i * size(tile1)) {
+    --     place currentColumnPadding;
+    -- };
+    -- newLine;
+
+    -- repeat (i * size(tile1)) {
+    --     place rowPadding;
+    --     newLine;
+    -- };    
+};
+
+place tileNext;

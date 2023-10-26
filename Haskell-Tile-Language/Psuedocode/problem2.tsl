@@ -1,0 +1,22 @@
+input tile
+
+-- build base square
+baseSquare = place tile, place tile(rotate 90), newline, place tile(rotate 180), place tile(rotate 270);
+
+--build scaled up base square
+bigSquare = scale(3, baseSquare);
+
+--build pattern from base square
+repeat(5) {
+    place baseSquare;
+}
+place baseSquare;
+place bigSquare;
+place baseSquare;
+newline;
+repeat(2) {
+    place baseSquare;
+    skip 3 tiles (size of baseSquare);
+    place baseSquare;
+    newline;
+}

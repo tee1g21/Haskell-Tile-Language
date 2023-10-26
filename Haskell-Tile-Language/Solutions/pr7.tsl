@@ -1,0 +1,73 @@
+-- task 7 (grid size 200N)
+
+-- Gets and stores the input tiles.
+input tile1;
+
+-- Generates the padding used in many of the generated tiles rows.
+rowPadding = build {
+    repeat ((size(tile1) * 100)) {
+        place fill(white, 1);
+    };
+};
+
+-- Generates the padding used in many of the generated tiles columns.
+columnPadding = build {
+    repeat ((size(tile1) * 100)) {
+        place fill(white, 1);
+        newLine;
+    };    
+};
+
+-- Builds the final tile of the program which will be placed in the grid.
+tileQ = build {
+    -- Initialises the accumulator with a 100x scale.
+    tileAcc = build { place scale(100, tile1) };
+
+    -- Loop which generates and XOR's all the other scale tiles.
+    for(i, 1, 49){
+        -- Calculates the current scaling of the tile, then scales it.
+        N = (100 - (2 * i));
+        tileN = scale(N, tile1);
+
+        -- Generates the current padding based on the size of the scaled tile.
+        currentColumnPadding = subtile(columnPadding, 0, 0, size(tileN));
+
+        -- Builds a new tile with the scaled version of the inputed tile so it can be XORed.
+        tileNext = build {
+            -- Adds upper padding to the tile.
+            repeat (2 * i * size(tile1)) {
+                place rowPadding;
+                newLine;
+            };
+
+            -- Adds the left padding to the tile.
+            repeat (2 * i * size(tile1)) {
+                place currentColumnPadding;
+            };
+
+            -- Adds the newly scaled tile to the grid
+            place tileN; 
+             
+        };
+
+        -- Performs an XOR operation on the accumulator and newly generated tiles.
+        tileNAND = negate(conjugate(tileAcc,tileNext));
+        tileAccNAND = negate(conjugate(tileAcc,tileNAND));
+        tileNextNAND = negate(conjugate(tileNext,tileNAND));
+        tileXOR = negate(conjugate(tileAccNAND,tileNextNAND));
+
+        -- Updates accumulator to be equivalent to the new tile.
+        tileAcc = ~ tileXOR;
+    };
+
+    -- Places the final generated tile into the builds grid.
+    place tileAcc;
+};
+
+-- Places the final tiles into the main grid as described in the spec.
+place tileQ;
+place (reflectY(tileQ));
+newLine;
+place (reflectX(tileQ));
+place (reflectY(reflectX (tileQ)));
+

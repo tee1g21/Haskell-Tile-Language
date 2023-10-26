@@ -1,0 +1,38 @@
+-- task 3 (grid size 60)
+
+-- Gets and stores the input tiles.
+input tile1;
+
+-- Reflects tile1 in required ways to produce the needed tiles.
+tileX = reflectX(tile1);
+tileY = reflectY(tile1);
+tileXY = reflectX(tileY);
+
+-- Builds the base object using both the inputted and generated tiles.
+baseTile = build { 
+    place tile1;
+    place tileY;
+    place (fill (white, (size (tile1))));
+    newLine;
+    place (fill (white, (size (tile1))));
+    place tileX;
+    place tileXY;
+};
+
+-- Creates a reflected version of the base object.
+baseReflect = reflectX(baseTile);
+
+-- Builds the first line switching between base tile and its reflection 
+-- Built instead of nesting repeats to reduce time complexity.
+buildLine = build{
+    repeat (10) {
+        place baseTile;
+        place baseReflect;
+    };
+};
+
+-- Creates grid by repeating placement of lines.
+repeat (30) {
+    place buildLine;
+    newLine;
+};

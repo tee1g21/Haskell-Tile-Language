@@ -1,0 +1,24 @@
+-- task 1 (grid size 64*(size tile1/tile2))
+
+-- Gets and stores the input tiles.
+input tile1, tile2;
+
+-- Creates the bases line to be placed in the grid.
+-- Built instead of nesting repeats to reduce time complexity.
+baseLines = build { 
+    repeat(32) {
+        place tile1; 
+        place tile2;
+    };
+    newLine;
+    repeat (32) {
+        place tile2;
+        place tile1;
+    };
+};
+
+-- Creates grid by repeating placement of lines.
+repeat (32) {
+    place baseLines;
+    newLine;
+};

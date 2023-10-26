@@ -1,0 +1,35 @@
+-- task 9 (grid size 101N)
+
+-- Gets and stores the input tiles.
+input tile1;
+
+-- Creates blank tile onces to reduce call of the fill command.
+blankTile = fill (white, (size (tile1)));
+
+-- Builds the initial triangle as instructed.
+triangleA = build { 
+    for (i, 0, 100) {
+        for (j, 0, 100) {
+            -- Places inputed tile if the i is less then double the current j, else places a blank tile.
+            if ((2*j) < i){ place tile1; }
+            else { place blankTile; };
+        };
+        newLine;
+    };
+};
+
+-- Generates the three other triangles which are XORed when making the final output.
+triangleB = build { place reflectY(triangleA); };
+triangleC = build { place rotate(270, triangleB); };
+triangleD = build { place reflectX(triangleC); };
+
+-- Both pair's AB and CD don't touch so we OR then using NAND's (a negated conjugation).
+gridOne = negate(conjugate(negate(conjugate(triangleA,triangleA)),negate(conjugate(triangleB,triangleB))));
+gridTwo = negate(conjugate(negate(conjugate(triangleC,triangleC)),negate(conjugate(triangleD,triangleD))));
+
+-- Then we need to perform an XOR on the two parts of the grid to make the final output, again using NAND's to make the XOR.
+gridNAND = negate(conjugate(gridOne,gridTwo));
+gridOneNAND = negate(conjugate(gridOne,gridNAND));
+gridTwoNAND = negate(conjugate(gridTwo,gridNAND));
+gridXOR = negate(conjugate(gridOneNAND,gridTwoNAND));
+place gridXOR;

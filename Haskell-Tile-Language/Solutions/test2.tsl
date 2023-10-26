@@ -1,0 +1,74 @@
+input tile1, tile2;
+-- build the base tile
+-- base tile is 8x5 
+
+--declare all 4 tile types here
+tile1x = reflectX(tile1); -- x axis flip of tile1
+tile2x = reflectX(tile2); -- x axis flip of tile2
+tile2s = scale(2, tile2); -- scale 2 of tile2
+tile2sx = reflectX(tile2s); -- x axis flip of tile2s
+
+-- declare the 8 subtiles from tile2
+tile2s1 = subtile(tile2s, 0, 0, (size (tile2)));
+tile2s2 = subtile(tile2s, (size(tile2)), 0, (size (tile2)));
+tile2s3 = subtile(tile2s, 0, (size(tile2)), (size (tile2)));
+tile2s4 = subtile(tile2s, (size(tile2)), (size(tile2)), (size (tile2)));
+
+tile2sx1 = subtile(tile2sx, 0, 0, (size (tile2)));
+tile2sx2 = subtile(tile2sx, (size(tile2)), 0, (size (tile2)));
+tile2sx3 = subtile(tile2sx, 0, (size(tile2)), (size (tile2)));
+tile2sx4 = subtile(tile2sx, (size(tile2)), (size(tile2)), (size (tile2)));
+
+-- build function for the base tile
+baseTile = build {
+    place tile1x;
+    place tile1x;
+    place tile2x;
+    place tile2sx1;
+    place tile2sx2;
+    place tile2sx1;
+    place tile2sx2;
+    place tile2x;
+    newLine;
+    place tile1x;
+    place tile2s1;
+    place tile2s2;
+    place tile2sx3;
+    place tile2sx4;
+    place tile2sx3;
+    place tile2sx4;
+    place tile1;
+    newLine;
+    place tile2;
+    place tile2s3;
+    place tile2s4;
+    place tile2x;
+    place tile2sx1;
+    place tile2sx2;
+    place tile1;
+    place tile1;
+    newLine;
+    place tile2x;
+    place tile2sx1;
+    place tile2sx2;
+    place tile1;
+    place tile2sx3;
+    place tile2sx4;
+    place tile2s1;
+    place tile2s2;
+    newLine;
+    place tile1;
+    place tile2sx3;
+    place tile2sx4;
+    place tile1;
+    place tile1;
+    place tile2;
+    place tile2s3;
+    place tile2s4;
+};
+
+place baseTile;
+-- place reflectY(baseTile);
+-- newLine;
+-- place reflectX(baseTile);
+-- place reflectX(reflectY(baseTile));

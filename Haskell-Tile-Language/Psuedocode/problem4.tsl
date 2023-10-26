@@ -1,0 +1,24 @@
+-- task 4 (grid size 50)
+
+input tile1;
+input tile2;
+input tile3;
+
+calctile1 = conjugate(tile1, negate(tile3))
+calctile2 = conjugate(tile2, negate(tile3))
+
+
+--need a for statement with indices for this part 
+for (i = 0 to 50) {
+    for j = 0 to 50 {
+        if (i+j < 50 and i < 25) {
+            place calctile1;
+            }
+        else if (j <= i and i >= 25) {
+            place calctile2;
+            }
+        else {
+            place blankTile(tile1.size);
+            }
+        }
+    }

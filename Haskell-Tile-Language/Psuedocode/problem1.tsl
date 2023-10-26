@@ -1,0 +1,14 @@
+--task1
+input tile1, tile2;
+
+repeat (32) {
+    repeat(32) {
+        place tile1; 
+        place tile2;
+    };
+    newLine;
+    repeat (32) {
+        place tile2;
+        place tile1;
+    };
+};

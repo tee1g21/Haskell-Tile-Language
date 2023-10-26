@@ -1,0 +1,43 @@
+-- task 10 (grid size N (size of tile1, atleast 20))
+
+-- Gets and stores the input tiles.
+input tile1, tile2;
+
+-- HOW IT WORKS REMOVE BEFORE WE POST TO ONLINE.
+-- for loop placing subtile size 12 where y=0, start x=0, increment x by (12*i) where i is ((size(tile1) / 12) + 1)
+-- newline
+-- place subtile of size 12 at (0,12)
+-- next place tile2
+-- for loop placing subtile size 5 where y=12, start x=17, increment x by (5*i) where i is (((size(tile1) - 17) / 5) + 1)
+-- newline
+-- for loop placing subtile size 7 where y=17, start x=12, increment x by (7*i) where i is (((size(tile1) - 12) / 7) + 1)
+-- newline
+-- subtile size with the size of tile1, where y = 24 and x = 0
+
+-- Gets the size of the main tile we are replacing area of.
+tileOneSize = size(tile1);
+
+-- Gets the lines before the 5x5 we are replacing and places them in the grid.
+for (i, 0, ((tileOneSize/12) + 1)) { place (subtile(tile1, (i*12), 0, 12)); };
+newLine;
+
+-- Places the 12x12 by the side of where we want to place tile2, then we place tile2 itself.
+place (subtile(tile1, 0, 12, 12));
+
+-- Uses build to help insert tile2 with all its padding on the same lines as the previous 12x12.
+insertTileTwo = build {
+    -- Inserts tile2 into the tile.
+    place tile2;
+
+    -- Adds the area to the side of tile2, add a new line, then fill in the missing area bellow tile2 which fits in the same lines as the last 12x12.
+    for (i, 0, (((tileOneSize-17)/5) + 1)) { place (subtile(tile1, (17+(i*5)), 12, 5)); };
+    newLine;
+    for (i, 0, (((tileOneSize-12)/7) + 1)) { place (subtile(tile1, (12+(i*7)), 17, 7)) };
+};
+
+-- Inserts the built tile into grid.
+place insertTileTwo;
+newLine;
+
+-- Dynamically gets the final unplaced area of tile 1 and places it into the grid.
+for (i, 0, (((tileOneSize)/(tileOneSize-24)) + 1)) { place (subtile(tile1, (i*(tileOneSize-24)), 24, (tileOneSize-24))); };

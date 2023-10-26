@@ -1,0 +1,21 @@
+input tile1, tile2, tile3;
+
+num = 0;
+
+repeat (10){
+
+    if (num < 4) {
+        place tile1;
+        newLine;
+    } else {
+        if (num < 8) {
+            place tile2;
+            newline;
+        } else {
+            place tile3;
+            newLine;
+        };
+    };
+
+    num = num + 1
+};

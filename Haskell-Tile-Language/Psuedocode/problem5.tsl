@@ -1,0 +1,35 @@
+-- task 5 (grid size 18)
+
+input tile;
+
+--sub tiles 1 2 and 3 are 6x6 tiles starting at different points in the tile inputted
+--i am not yet sure how to write this
+
+-- for loop over the tile and save the first 6 cols and rows into a new tile
+-- for loop over the tile, adding 2 to the indices, thus creating an indent to what is saved
+-- same as previous step, adding 4 to the indices
+
+--for (i = 0 to 6)
+--for (j = 0 to 6)
+--subtile1(i, j) = tile(i,j)
+
+--for (i = 0 to 6)
+--for (j = 0 to 6)
+--subtile2(i, j) = tile(i+2,j+2)
+
+--for (i = 0 to 6)
+--for (j = 0 to 6)
+--subtile3(i, j) = tile(i+4,j+4)
+
+repeat(3) {
+    place subtile1 
+    }
+    
+repeat(3) {
+    place subtile2 
+    }
+
+repeat(3) {
+    place subtile3 
+    }
+    

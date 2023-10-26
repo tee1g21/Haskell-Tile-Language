@@ -1,0 +1,16 @@
+-- task 5 (grid size 18)
+
+-- Gets and stores the input tile.
+input tile1;
+
+-- Subtitles the inputted tile in different positions and store it.
+subtile1 = subtile(tile1, 0, 0, 6);
+subtile2 = subtile(tile1, 2, 2, 6);
+subtile3 = subtile(tile1, 4, 4, 6);
+
+-- Places down the subtitles three times each before going to the next one.
+repeat(3) { place subtile1 };
+newLine;
+repeat(3) { place subtile2 };
+newLine;
+repeat(3) { place subtile3 };

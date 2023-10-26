@@ -1,0 +1,45 @@
+
+%% 
+Exp : Input var                                                     { Input $2 }
+    | Place Tile                                                    { Tile $2 }
+    | NewLine                                                       { NewLine }
+    | Repeat '(' int ')' '{' Exp '}'                                { Repeat $3 $6 }
+    | For '(' var ',' int ',' int ')' '{' Exp '}'                   { For $3 $5 $7 $10 }
+    
+    {- NEED TO FIGURE OUT IF AS GROUP-}
+    | If  '(' {- Argument -} ')' '{' Exp '}' Else '{' Exp '}'
+    | If  '(' {- Argument -} ')' '{' Exp '}'
+
+    | Rotate '(' int ',' Tile ')'                                   { Rotate $3 $5 }
+    | Scale  '(' int ',' Tile ')'                                   { Scale $3 $5 }
+    | Size '(' Tile ')'                                             { Size $3 }
+    | ReflectX '(' Tile ')'                                         { ReflectX $3 }
+    | ReflectY '(' Tile ')'                                         { ReflectY $3 }
+    | Conjugate '(' Tile ',' Tile ')'                               { Conjugate $3 $5 }
+    | Negate '(' Tile ')'                                           { Negate $3 }
+    | Subtile '(' Tile ',' int ',' int ',' int ')'                  { Subtile $3 $5 $7 $9 }
+    | Point '(' Tile ',' int ',' int ')'                            { Point $3 $5 $7 }
+    | Fill '(' {-Colour-} ',' int ')'                               { Fill $3 $5 }
+    
+    | Exp '+' Exp                                                   { Plus $1 $3 }
+    | Exp '-' Exp                                                   { Minus $1 $3 }
+    | Exp '/' Exp                                                   { Divide $1 $3 }
+    | Exp '*' Exp                                                   { Multiply $1 $3 }
+    | var '=' Exp                                                   { Equate $1 $3 }
+    | Exp '<' Exp                                                   { LessThan $1 $3 }
+    | Exp '>' Exp                                                   { GreaterThan $1 $3 }
+    
+    | Bool                                                          { Bool $1 }
+    | int                                                           { Int $1 } 
+    | var                                                           { Var $1 }
+
+-- THIS IS ARE TYPE FOR TILE FINNISH ME PLS
+Tile :
+
+-- Made Bool separate (PLEASE GIVE IDEAS ON THIS)
+Bool : True             { BoolTrue }
+     | False            { BoolFalse }
+     | Bool AND Bool    { BoolAnd $1 $3}
+     | Bool OR Bool     { BoolOr $1 $3}
+     | NOT Bool         { BoolNot $2 }
+

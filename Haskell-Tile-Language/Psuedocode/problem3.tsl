@@ -1,0 +1,21 @@
+-- task 3 (grid size 60)
+
+input tile;
+
+tileX = reflectX tile;
+tileY = reflectY tile;
+tileXY = relfectX (reflectY tile);
+
+
+baseTile {
+    place (tile, tileX, blankTile(tile.size));
+    newLine();
+    place (blankTile(tile.size), tileX, tileXY);
+}
+
+Repeat 30 {
+    Repeat 10 {
+        place baseTile;
+    }
+    NewLine();
+}

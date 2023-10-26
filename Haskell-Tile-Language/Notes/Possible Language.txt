@@ -1,0 +1,24 @@
+###INTERACT WITH A FILE###
+input - takes in any number of files and stores to variables with names.
+place - puts a given tile into the new output tile.
+newline - starts a new line of tiles.
+skip (COUNT, SIZE) - skips a number of tiles returning empty values for the given tile size.
+
+###Logic Blocks and Loops###
+repeat (COUNT) {CODE} - continues a set of code for a given number of attempts.
+for (VALUE,LOWERCOUNT,UPPERCOUNT) {CODE} - continues a set of code for the number of times it takes to go grom lower to upper count (value stores current count).
+if (REQUIREMENT) {CODE} - allows code to run if requirement is true.
+else if (REQUIREMENT) {CODE} - allows code to run if requirement is true and previous requirement is false.
+else {CODE} - allows code to run if previous requirement is false.
+
+###EDIT VALUES WITHOUT FILE###
+rotate (DEGREE, TILE) - rotates the value of a tile but a given angle.
+scale (SIZE, TILE) - increases the tile size by a given factor.
+size (TILE) - gets the size of an inputted tile.
+reflectX (TILE) - reflects the values of the tile on the x axis.
+reflectY (TILE) - reflects the values of the tile on the y axis.
+conjugate (TILEONE, TILETWO) - gets the conjugation of the two inputted tiles (ands each value).
+negation (TILE) - get a tile with the opposite values to the inputted tile.
+subtile (TILE, POINTX, POINTY, SIZE) - gets a specific sub part of a tile for a given size from the given point.
+point (TILE, POINTX, POINTY) - gets a specific point of a given tile.
+fill (COLOUR, SIZE) - fills space with all white or all black tiles.
